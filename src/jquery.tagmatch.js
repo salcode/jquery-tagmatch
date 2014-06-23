@@ -51,6 +51,9 @@
 			// call them like so: this.yourOtherFunction(this.element, this.settings).
 			console.log("xD");
 		},
+		alwaysSeven: function() {
+			return 7;
+		},
 		yourOtherFunction: function () {
 			// some logic
 		}
