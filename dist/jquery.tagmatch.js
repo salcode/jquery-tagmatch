@@ -1,9 +1,9 @@
 /*
- *  jQuery Boilerplate - v3.3.4
- *  A jump-start for jQuery plugins development.
- *  http://jqueryboilerplate.com
+ *  jQuery TagMatch Plugin - v1.0.0
+ *  A validation plugin that checks if opening and closing tags match.
+ *  
  *
- *  Made by Zeno Rocha
+ *  Made by Sal Ferrarello
  *  Under MIT License
  */
 // the semi-colon before function invocation is a safety net against concatenated
@@ -20,7 +20,7 @@
 		// minified (especially when both are regularly referenced in your plugin).
 
 		// Create the defaults once
-		var pluginName = "defaultPluginName",
+		var pluginName = "tagMatch",
 				defaults = {
 				propertyName: "value"
 		};
@@ -56,12 +56,8 @@
 
 		// A really lightweight plugin wrapper around the constructor,
 		// preventing against multiple instantiations
-		$.fn[ pluginName ] = function ( options ) {
-				this.each(function() {
-						if ( !$.data( this, "plugin_" + pluginName ) ) {
-								$.data( this, "plugin_" + pluginName, new Plugin( this, options ) );
-						}
-				});
+		$[ pluginName ] = function ( options ) {
+				testme = new Plugin( this, options );
 
 				// chain jQuery functions
 				return this;

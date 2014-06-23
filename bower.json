@@ -1,18 +1,18 @@
 {
-	"name": "jquery-boilerplate",
-	"version": "3.3.4",
-	"homepage": "http://jqueryboilerplate.com",
+	"name": "tagmatch",
+	"version": "1.0.0",
+	"homepage": "",
 	"authors": [
-		"Zeno Rocha <hi@zenorocha.com>"
+		"Sal Ferrarello <sal@ironcodestudio.com>""
 	],
-	"description": "A jump-start for jQuery plugins development.",
+	"description": "A validation plugin that checks if opening and closing tags match.",
 	"main": "src/jquery.boilerplate.js",
+
 	"keywords": [
 		"jquery",
-		"plugin",
-		"boilerplate",
-		"jquery-plugin",
-		"jquery-boilerplate"
+		"tagmatch",
+		"validation",
+		"plugins"
 	],
 	"license": "MIT"
 }
