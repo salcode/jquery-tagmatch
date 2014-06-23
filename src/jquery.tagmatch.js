@@ -14,7 +14,9 @@
 	// Create the defaults once
 	var pluginName = "tagMatch",
 		defaults = {
-			propertyName: "value"
+			// define a global variable name for the test object
+			testObjGlobal: 'tagMatchTestObj'
+			//testObjGlobal: false
 		};
 
 	// The actual plugin constructor
@@ -27,7 +29,15 @@
 		this.settings = $.extend( {}, defaults, options );
 		this._defaults = defaults;
 		this._name = pluginName;
-		this.init();
+		if ( false !== this.settings.testObjGlobal ) {
+			console.log( 'Test mode, NOT executing method init()' );
+			// use the value of this.settings.testObjGlobal as the name
+			// of the global variable for this object, this allows test cases to be written
+			window[this.settings.testObjGlobal] = this;
+		} else {
+			console.log( 'Normal mode, execute method init()' );
+			this.init();
+		}
 	}
 
 	// Avoid Plugin.prototype conflicts
@@ -49,7 +59,7 @@
 	// A really lightweight plugin wrapper around the constructor,
 	// preventing against multiple instantiations
 	$[ pluginName ] = function ( options ) {
-		testme = new Plugin( this, options );
+		new Plugin( this, options );
 
 		// chain jQuery functions
 		return this;
