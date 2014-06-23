@@ -14,8 +14,8 @@
 	// Create the defaults once
 	var pluginName = "tagMatch",
 		defaults = {
-		propertyName: "value"
-	};
+			propertyName: "value"
+		};
 
 	// The actual plugin constructor
 	function Plugin ( element, options ) {
