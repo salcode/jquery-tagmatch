@@ -50,12 +50,66 @@
 			// you can add more functions like the one below and
 			// call them like so: this.yourOtherFunction(this.element, this.settings).
 			console.log("xD");
+			var html = getInitialHtml(),
+				tagStack = populateTagStack( html );
+			console.log( 'The tags in this markup ' + ( validateTagStack( tagStack ) ? 'match' : 'do NOT match' ) );
 		},
-		alwaysSeven: function() {
-			return 7;
+		getInitialHtml: function() {
+			// stub
+			return "<!DOCTYPE html>\n<html>\n <head>\n <meta charset=\"utf-8\">\n <title>Example</title>\n </head>" +
+				"<body></body>\n</html>";
 		},
-		yourOtherFunction: function () {
-			// some logic
+		populateTagStack: function( html ) {
+			// stub
+			//var resultObj = this.getNextTagFromHtml( html );
+			//while ( resultObj ) {
+			//}
+			return ['a', 'b', 'c'];
+		},
+		validateTagStack: function ( tagStack ) {
+
+		},
+		getNextTagFromHtml: function( html ) {
+			var openingLt,
+				closingGt,
+				tag,
+				resultObj = {
+					html: 'sjdfksadjfs</div>',
+					tag: 'div'
+				};
+
+			// find next tag
+			openingLt = html.indexOf( '<' );
+
+			// no more tags, our work is done
+			if ( -1 === openingLt ) {
+					return false;
+			}
+
+			// remove all characters to next tag
+			html = html.substr( openingLt + 1 );
+
+			console.log( html );
+
+			closingGt = html.indexOf( '>' );
+
+			// check for comment
+			if ( '!--' === html.substr( 0, 3 ) ) {
+					console.log( 'this is a comment, fancy work here' );
+					// update closing Gt to end of comment
+			}
+
+			tag = html.substr( 0, closingGt ).trim();
+			resultObj['html'] = html;
+
+			if ( -1 !== tag.indexOf( ' ' ) ) {
+				resultObj['tag'] = tag.substr( 0, tag.indexOf( ' ' ) );
+			} else {
+				resultObj['tag'] = tag;
+			}
+			console.log( resultObj );
+
+			return resultObj;
 		}
 	});
 
