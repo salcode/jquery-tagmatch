@@ -97,14 +97,13 @@
 			}
 
 			tag = html.substr( 0, closingGt ).trim();
-			resultObj['html'] = html;
+			resultObj['html'] = html.substr( closingGt+1 ).trim();
 
 			if ( -1 !== tag.indexOf( ' ' ) ) {
 				tag = tag.substr( 0, tag.indexOf( ' ' ) );
 			}
 
 			resultObj['tag'] = tag;
-			console.log( resultObj );
 
 			return resultObj;
 		}
