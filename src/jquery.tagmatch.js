@@ -49,7 +49,6 @@
 			// and this.settings
 			// you can add more functions like the one below and
 			// call them like so: this.yourOtherFunction(this.element, this.settings).
-			console.log("xD");
 			var html = getInitialHtml(),
 				tagStack = populateTagStack( html );
 			console.log( 'The tags in this markup ' + ( validateTagStack( tagStack ) ? 'match' : 'do NOT match' ) );
@@ -74,8 +73,8 @@
 				closingGt,
 				tag,
 				resultObj = {
-					html: 'sjdfksadjfs</div>',
-					tag: 'div'
+					html: '',
+					tag: ''
 				};
 
 			// find next tag
@@ -89,8 +88,6 @@
 			// remove all characters to next tag
 			html = html.substr( openingLt + 1 );
 
-			console.log( html );
-
 			closingGt = html.indexOf( '>' );
 
 			// check for comment
@@ -103,10 +100,10 @@
 			resultObj['html'] = html;
 
 			if ( -1 !== tag.indexOf( ' ' ) ) {
-				resultObj['tag'] = tag.substr( 0, tag.indexOf( ' ' ) );
-			} else {
-				resultObj['tag'] = tag;
+				tag = tag.substr( 0, tag.indexOf( ' ' ) );
 			}
+
+			resultObj['tag'] = tag;
 			console.log( resultObj );
 
 			return resultObj;
