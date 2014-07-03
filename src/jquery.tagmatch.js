@@ -59,11 +59,21 @@
 				"<body></body>\n</html>";
 		},
 		populateTagStack: function( html ) {
-			// stub
-			//var resultObj = this.getNextTagFromHtml( html );
-			//while ( resultObj ) {
-			//}
-			return ['a', 'b', 'c'];
+			var tagStack = [],
+				resultObj = this.getNextTagFromHtml( html );;
+
+			while ( resultObj ) {
+				tagStack.push( resultObj.tag );
+				resultObj = this.getNextTagFromHtml( resultObj.html );;
+			}
+			return tagStack;
+		},
+		isClosingTag: function ( tag ) {
+			return '/' === tag[0];
+		},
+		isLoneTag: function ( tag ) {
+			var loneTagList = [ 'img', 'link', 'meta' ];
+			return ( -1 !== $.inArray( tag, loneTagList ) );
 		},
 		validateTagStack: function ( tagStack ) {
 			var openTagStack = [],
