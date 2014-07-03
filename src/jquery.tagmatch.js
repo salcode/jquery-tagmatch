@@ -66,7 +66,26 @@
 			return ['a', 'b', 'c'];
 		},
 		validateTagStack: function ( tagStack ) {
+			var openTagStack = [],
+				tag;
+			tagStack = tagStack.reverse();
+			while ( tagStack.length ) {
+				tag = tagStack.pop();
+				if ( this.isClosingTag( tag ) ) {
+					if ( !openTagStack.length ) {
+						//console.log( 'closing tag when openTagStack is empty' );
+						return false;
+					}
 
+					if ( tag !== '/' + openTagStack.pop()  ) {
+						//console.log( tag + ' does not match last on openTagStack' );
+						return false;
+					}
+				} else if ( !this.isLoneTag( tag ) ) {
+					openTagStack.push( tag );
+				}
+			}
+			return ( 0 === openTagStack.length );
 		},
 		getNextTagFromHtml: function( html ) {
 			var openingLt,
