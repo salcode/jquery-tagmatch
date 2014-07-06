@@ -47,3 +47,10 @@ QUnit.test( "method validateTagStack( tagStack )", function( assert ) {
 	assert.equal( true, tagMatchTest.validateTagStack( ['footer', 'span', '/span', 'a', '/a', '/footer'] ), 'a bunch of valid tags' );
 	assert.equal( true, tagMatchTest.validateTagStack( ['footer', 'span', 'img', '/span', 'a', '/a', '/footer'] ), 'a bunch of valid tags with an image' );
 });
+
+QUnit.test( "method validateHtml( html )", function( assert ) {
+	assert.equal( true, tagMatchTest.validateHtml( '<div></div>' ), 'opening, closing divs' );
+	assert.equal( false, tagMatchTest.validateHtml( '<div>' ), 'opening but no closing div' );
+	assert.equal( true, tagMatchTest.validateHtml( '<footer>\n<!-- <span> \n--></footer>' ), '<footer>\n<!-- <span> \n--></footer>' );
+	assert.equal( false, tagMatchTest.validateHtml( '<footer>\n<!-- <span> \n--></footer></span>' ), '<footer>\n<!-- <span> \n--></footer></span>' );
+});

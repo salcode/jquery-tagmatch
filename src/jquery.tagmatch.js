@@ -75,6 +75,10 @@
 			var loneTagList = [ 'img', 'link', 'meta', '<comment>' ];
 			return ( -1 !== $.inArray( tag, loneTagList ) );
 		},
+		validateHtml: function ( html ) {
+			tagStack = this.populateTagStack( html );
+			return this.validateTagStack( tagStack );
+		},
 		validateTagStack: function ( tagStack ) {
 			var openTagStack = [],
 				tag;
