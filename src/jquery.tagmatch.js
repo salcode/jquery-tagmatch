@@ -72,7 +72,7 @@
 			return '/' === tag[0];
 		},
 		isLoneTag: function ( tag ) {
-			var loneTagList = [ 'img', 'link', 'meta' ];
+			var loneTagList = [ 'img', 'link', 'meta', '<comment>' ];
 			return ( -1 !== $.inArray( tag, loneTagList ) );
 		},
 		validateTagStack: function ( tagStack ) {
@@ -121,11 +121,21 @@
 
 			// check for comment
 			if ( '!--' === html.substr( 0, 3 ) ) {
-					console.log( 'this is a comment, fancy work here' );
-					// update closing Gt to end of comment
+				// update closing Gt to end of comment
+				closingGt = html.indexOf('-->');
+				if ( -1 === closingGt ) {
+					return false;
+				}
+
+				// closing comment tag "-->" exists,
+				// increment closingGt from beginning of
+				// closing tag to last character in it
+				closingGt += 2;
+				tag = '<comment>';
+			} else {
+				tag = html.substr( 0, closingGt ).trim();
 			}
 
-			tag = html.substr( 0, closingGt ).trim();
 			resultObj['html'] = html.substr( closingGt+1 ).trim();
 
 			if ( -1 !== tag.indexOf( ' ' ) ) {

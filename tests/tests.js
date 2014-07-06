@@ -6,6 +6,11 @@ QUnit.test( "method getNextTagFromHtml( html )", function( assert ) {
 	assert.equal( 'div', tagMatchTest.getNextTagFromHtml( '  \t    <div></div>' )['tag'], "tab then opening tag" );
 	assert.equal( 'div', tagMatchTest.getNextTagFromHtml( '<div class="abc">klsjdklfjsf' )['tag'], "opening tag with class" );
 	assert.equal( '/footer', tagMatchTest.getNextTagFromHtml( '</footer>' )['tag'], "closing tag (footer)" );
+	assert.equal( '<comment>', tagMatchTest.getNextTagFromHtml( '<!-- comment -->' )['tag'], "comment" );
+	assert.equal( '<comment>', tagMatchTest.getNextTagFromHtml( '<!-- this is a comment -->' )['tag'], "multiword comment" );
+	assert.equal( '<comment>', tagMatchTest.getNextTagFromHtml( '<!-- this <span> wonk wonk wonk </span> is a comment -->' )['tag'], "comment tags with markup tags inside" );
+	assert.equal( '<comment>', tagMatchTest.getNextTagFromHtml( '<!-- this <span> wonk\nwonk\nwonk </span> is a comment -->' )['tag'], "comment tags with markup tags inside w/ line breaks" );
+	assert.ok( !tagMatchTest.getNextTagFromHtml( '<!-- incomplete comment --' ), "incomplete comment" );
 	assert.ok( !tagMatchTest.getNextTagFromHtml( 'klsjdklfjsf' ), "text string, no tag" );
 	assert.ok( !tagMatchTest.getNextTagFromHtml( '' ), "empty string, no tag" );
 	assert.ok( !tagMatchTest.getNextTagFromHtml( '    /header>' ), "almost closing tag \"/header\", no tag" );
@@ -15,6 +20,7 @@ QUnit.test( "method getNextTagFromHtml( html )", function( assert ) {
 	assert.equal( '</div>', tagMatchTest.getNextTagFromHtml( '  \t    <div></div>' )['html'], "remaining html tab then opening tag" );
 	assert.equal( 'klsjdklfjsf', tagMatchTest.getNextTagFromHtml( '<div class="abc">klsjdklfjsf' )['html'], "remaining html opening tag with class" );
 	assert.equal( '', tagMatchTest.getNextTagFromHtml( '</footer>' )['html'], "remaining html closing tag (footer)" );
+	assert.equal( 'abc', tagMatchTest.getNextTagFromHtml( '<!-- comment -->abc' )['html'], "remaining text after comment" );
 
 });
 
