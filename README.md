@@ -46,7 +46,7 @@ The basic structure of the project is given in the following way:
 ```
 
 ## Built With
-[jQuery Boilerplate](https://github.com/jquery-boilerplate/jquery-boilerplate/
+[jQuery Boilerplate](https://github.com/jquery-boilerplate/jquery-boilerplate/)
 
 ## License
 
