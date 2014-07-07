@@ -1,7 +1,7 @@
 /*
- *  jQuery TagMatch Plugin - v1.0.0
+ *  jQuery TagMatch Plugin - v0.7.0
  *  A validation plugin that checks if opening and closing tags match.
- *  
+ *
  *
  *  Made by Sal Ferrarello
  *  Under MIT License
