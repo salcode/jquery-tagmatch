@@ -1,12 +1,12 @@
 {
 	"name": "tagmatch",
-	"version": "1.0.0",
+	"version": "0.7.0",
 	"homepage": "",
 	"authors": [
 		"Sal Ferrarello <sal@ironcodestudio.com>""
 	],
 	"description": "A validation plugin that checks if opening and closing tags match.",
-	"main": "src/jquery.boilerplate.js",
+	"main": "src/jquery.tagmatch.js",
 
 	"keywords": [
 		"jquery",
